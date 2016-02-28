@@ -19,18 +19,18 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ##############################################################################################################################
 ## Function returns inverse of matrix passed in argument of above function
-## If new matrix is assigned using $set then inverse is calculated again is provided if matrix is not changed function retruns
+## If new matrix is assigned using $set then inverse is calculated again is provided if matrix is not changed function returns
 ## inverse result stored in cache
 ##############################################################################################################################
 
 cacheSolve <- function(x, ...) {
     inv <- x$getinv()
     if(!is.null(inv)) {
-        message("getting cached data")
+        message("loading cached data")
         return(inv)
     }
-    data <- x$get()
-    inv <- solve(data, ...)
+    new_data <- x$get()
+    inv <- solve(new_data, ...)
     x$setinv(inv)
     inv
 }
